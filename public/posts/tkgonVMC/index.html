@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="description" content="TKG 1.0 is GA!">
+<meta name="author" content="Alexander Dess">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>TKG on VMC - alexdess.cloud</title>
+
+    
+    <link href="/css/nucleus.css?1606165676" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606165676" rel="stylesheet">
+    <link href="/css/hybrid.css?1606165676" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606165676" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606165676" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606165676" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606165676" rel="stylesheet">
+    <link href="/css/theme.css?1606165676" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/foo.css?1606165676" rel="stylesheet"><link href="/css/bar.css?1606165676" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js?1606165676"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/tkgonvmc/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://alexdess.cloud/">
+    <img src="/images/favicon.png">
+  </a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1606165676"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606165676"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/alexdess.cloud";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1606165676"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/govc/" title="GOVC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/govc/">
+          GOVC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/from-metrics-to-insights/" title="Prometheus - From Metrics to Insights" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/from-metrics-to-insights/">
+          Prometheus - From Metrics to Insights
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/tkgonvmc/" title="TKG on VMC" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/posts/tkgonvmc/">
+          TKG on VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/app-modernization-with-vmc/" title="App modernization with VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/app-modernization-with-vmc/">
+          App modernization with VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/cluster-api/" title="K8s ClusterAPI" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/cluster-api/">
+          K8s ClusterAPI
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      Built with <i class="fas fa-heart"></i>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   TKG on VMC
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#download-tkg">Download TKG:</a></li>
+        <li><a href="#what-you-need-to-download">What you need to download:</a></li>
+        <li><a href="#upload-the-required-vm-templates-to-your-vcenter">Upload the required VM templates to your vCenter</a></li>
+      </ul>
+    </li>
+    <li><a href="#launch-the-tkg-installer-ui">Launch the TKG installer UI</a>
+      <ul>
+        <li><a href="#persistent-storage-for-kubernetes">Persistent Storage for Kubernetes</a></li>
+        <li><a href="#useful-links">Useful Links:</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+<div class="tags">
+
+  <a class="tag-link" href="/tags/k8s">K8s</a>
+
+  <a class="tag-link" href="/tags/vmc">VMC</a>
+
+  <a class="tag-link" href="/tags/storage">Storage</a>
+
+  <a class="tag-link" href="/tags/tkg">TKG</a>
+
+</div>
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              TKG on VMC
+            </h1>
+          
+
+        
+
+
+
+	<p>Tanzu Kubernetes Grid is GA! In this blogpost I am going to show you how easy it is to setup, configure and lifecycle enterprise K8s Clusters and applications on VMware Cloud.</p>
+<p>We will deploy Tanzu Kubernetes Grid to VMConAWS as well as an application which uses Cloud Native vSAN Storage and existing services on VMConAWS to expose it to the outside world.</p>
+<p>Before we start i would like to introduce you to the basic concepts of Tanzu Kubernetes Grid. Tanzu Kubernetes Grid leverages Cluster API to bring declarative Kubernetes style APIs which can be leveraged for the creation, configuration and management of Kubernetes Clusters itself.</p>
+<p>You can think of a K8s Cluster - our TKG Management Cluster which is provisioning TKG Workload Clusters.
+<img src="../tkgonVMC/images/tkg-concepts.png" alt="">
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+I created a video which you can follow to see the full deployment of a Tanzu Kubernetes Grid on VMware Cloud on AWS including the scaling of a TKG Cluster and the deployment of a application with persistent storage:
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/roHaVR-yOw8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</p>
+<!-- raw HTML omitted -->
+<p><strong>For the Jumphost:</strong></p>
+<ul>
+<li>Docker installed - <a href="https://docs.docker.com/engine/install/">Documentation</a></li>
+<li>kubectl  installed - <a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/">Documentation</a></li>
+<li>Setup govc (optional but helpful) - <a href="https://alexdess.cloud/posts/govc/">see here</a></li>
+</ul>
+<p><strong>For VMConAWS:</strong></p>
+<ul>
+<li>A DHCP enabled network for the TKG-VMs. Example in the Video is &ldquo;TKGonVMC&rdquo;.</li>
+</ul>
+<p>Firewall Rules in VMC:</p>
+<ul>
+<li>Compute Gateway:
+<ul>
+<li>Setup a FW rule to allow traffic from the network where your jumphost belongs to the &ldquo;TKGonVMC&rdquo; network where your nodes will be deployed - services ANY</li>
+<li>Setup a FW-Rule to allow traffic from the &ldquo;TKGonVMC&rdquo; network where your nodes will be deployed to the SDDC-Management network - service: ANY</li>
+<li>Setup a FW-Rule which allows your nodes from the &ldquo;TKGonVMC&rdquo; network to reach out to the Internet- service: ANY</li>
+</ul>
+</li>
+<li>Management Gateway:
+<ul>
+<li>Setup a FW-Rule to allow traffic from the &ldquo;TKGonVMC&rdquo;  and your Jumphost network to the vCenter via HTTPS</li>
+</ul>
+</li>
+<li>Create a folder and resource pool for the TKG-VMs (optional)
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></li>
+</ul>
+<h1 id="the-installation">The installation</h1>
+<h3 id="download-tkg">Download TKG:</h3>
+<p>TKG can be downloaded at the official VMware-Pages:</p>
+<p><a href="https://vmware.com/go/get-tkg">https://vmware.com/go/get-tkg</a></p>
+<p>You need to download the necessary components depending on your platform. I am using a ubuntu linux desktop hosted on my VMConAWS environment. Make sure to have network connectivity between your workstation or jumphost from where you are installing your first Management Cluster to  vSphere and the TKG-Network we created earlier. I am using a ubuntu horizon desktop running in VMware Cloud on AWS to deploy TKG. Huge thanks to Robert Guske for his <a href="https://rguske.github.io/post/a-linux-development-desktop-with-vmware-horizon-part-i-horizon/">great blog-post</a> how to create a linux horizon destkop and my colleague Robert Riemer for introducing me to the mysterious world of Horizon and VDI ;) !
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h3 id="what-you-need-to-download">What you need to download:</h3>
+<p>The CLI for your OS (depending on your OS):</p>
+<ul>
+<li>tkg-linux-amd64-v1.0.0_vmware.1.gz</li>
+</ul>
+<p>The node-Image for the worker and master nodes:</p>
+<ul>
+<li>photon-3-v1.17.3_vmware.2.ova</li>
+</ul>
+<p>The API Server Load Balancer Image:</p>
+<ul>
+<li>photon-3-capv-haproxy-v0.6.3_vmware.1.ova</li>
+</ul>
+<p>First we will extract the TKG CLI, make it executable and move it in our path:</p>
+<pre><code># Extract the CLI:
+gunzip tkg-linux-amd64-v1.0.0_vmware.1.gz
+
+# Rename it and move it in your Path:
+sudo mv tkg-linux-amd64-v1.0.0_vmware.1 tkg &amp;&amp; sudo cp tkg /usr/local/bin/
+
+# verify the functionality of the CLI
+tkg version
+Client:
+    Version: v1.0.0
+    Git commit: 60f6fd5f40101d6b78e95a33334498ecca86176e
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="upload-the-required-vm-templates-to-your-vcenter">Upload the required VM templates to your vCenter</h3>
+<p>The images for the K8s Nodes and the HA-Proxy need to be present in our vSphere Environment prior the deployment. You can import them via the vSphere UI or simply use <a href="https://alexdess.cloud/posts/govc/">govc</a> to achieve this. If you want to get started with govc please have a look at <a href="https://alexdess.cloud/posts/govc/">this previous blogpost.</a></p>
+<pre><code># extract the available properties from the ova-image:
+govc import.spec photon-3-capv-haproxy-v0.6.3_vmware.1.ova | jq .&gt; haproxy.json
+
+# adjust the two values in the json file to match your Network and Mark it as tempalte!
+{
+. 
+      &quot;Network&quot;: &quot;TKGonVMC&quot;
+    }
+  &quot;MarkAsTemplate&quot;: true
+
+# Import the OVA to vCenter
+govc import.ova -options=haproxy.json photon-3-capv-haproxy-v0.6.3_vmware.1.ova
+[14-04-20 12:18:51] Uploading capv-haproxy.ova.vmdk... OK
+[14-04-20 12:18:51] Marking VM as template...
+
+# Deploy the Worker node image the same way
+govc import.spec photon-3-v1.17.3_vmware.2.ova | jq .&gt; worker.json
+
+# Adjust the values Network and MarkAsTemplate like above
+
+# Deploy the image to vCenter:
+govc import.ova -options=worker.json photon-3-v1.17.3_vmware.2.ova
+
+govc import.ova -options=worker.json photon-3-v1.17.3_vmware.2.ova
+[14-04-20 12:23:19] Uploading photon-3-kube-v1.17.3-disk1.ova.vmdk... OK
+[14-04-20 12:23:19] Marking VM as template...
+</code></pre>
+<!-- raw HTML omitted -->
+<h2 id="launch-the-tkg-installer-ui">Launch the TKG installer UI</h2>
+<p>We will leverage the Tanzu-Installer-UI to enter the necessary data for the deployment of the TKG Management Cluster. This is our first Cluster and will provide the possibilities to deploy our actual workload clusters.</p>
+<p>To start the installer UI simply leverage the following command:</p>
+<pre><code>tkg init --ui
+</code></pre>
+<p>This will start a local webserver and you can begin to enter your values to the wizard.</p>
+<p><img src="../tkgonVMC/images/tkg-init.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p><strong>Section 1 - IaaS Provider:</strong></p>
+<ul>
+<li>your vCenter Endpoint</li>
+<li>Username: a User with cloudadmin privileges</li>
+<li>Click &ldquo;Connect&rdquo;</li>
+<li>Enter your SSH-Key: for example run &ldquo;cat ~/.ssh/id_rsa.pub&rdquo; in a terminal to determine your users public key or create a new one</li>
+<li>Select the available SDDC as Datacenter
+<img src="../tkgonVMC/images/tkg-iaas.png" alt=""></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>This are the settings for your Management Cluster which will be the control plane to deploy and manage Kubernetes Clusters. Depending on your selection the components like etcd will be deployed accordingly.
+<img src="../tkgonVMC/images/tkg-cp.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p><strong>Section 3 - Resources:</strong></p>
+<ul>
+<li>Resource Pool: Select the &ldquo;tkg&rdquo; resource Pool</li>
+<li>VM Folder: Select the folder you created earlier</li>
+<li>Datastore: Select the workload Datastore</li>
+</ul>
+<p><img src="../tkgonVMC/images/tkg-resources.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p>Select your &ldquo;TKGonVMC&rdquo; Network. It needs to have DHCP enabled! You can leave the Cluster-Service and POD-CIDR default or change it according to your preferences.</p>
+<p><img src="../tkgonVMC/images/tkg-network.png" alt=""></p>
+<p>Hit next and verify if the deployment is successful. This will take approximately 7-10 minutes.</p>
+<p><img src="../tkgonVMC/images/tkg-deploy.png" alt=""></p>
+<p>Check the status of your management cluster. The installer will automatically set the context for kubectl to the management cluster.  You can check whether your management cluster is healthy by viewing the pods running on it:</p>
+<pre><code>kubectl get pods -A
+NAMESPACE                           NAME                                                             READY   STATUS    RESTARTS   AGE
+capi-kubeadm-bootstrap-system       capi-kubeadm-bootstrap-controller-manager-68d68b745-45cqd        2/2     Running   0          4h25m
+capi-kubeadm-control-plane-system   capi-kubeadm-control-plane-controller-manager-5df79cdfdd-xfcm2   2/2     Running   0          4h25m
+capi-system                         capi-controller-manager-69cd5fcdc8-7f5vr                         2/2     Running   0          4h25m
+capi-webhook-system                 capi-controller-manager-675d6bbb7c-vxgzz                         2/2     Running   0          4h25m
+capi-webhook-system                 capi-kubeadm-bootstrap-controller-manager-658dcb9d78-js9p6       2/2     Running   0          4h25m
+capi-webhook-system                 capi-kubeadm-control-plane-controller-manager-5f94cdcf78-tt86p   2/2     Running   0          4h25m
+capi-webhook-system                 capv-controller-manager-db5c995bc-m9bh2                          2/2     Running   0          4h25m
+capv-system                         capv-controller-manager-76d9454f9d-vx66f                         2/2     Running   0          4h25m
+cert-manager                        cert-manager-567cc74dfb-84m6g                                    1/1     Running   0          4h27m
+cert-manager                        cert-manager-cainjector-59f464c7ff-764c9                         1/1     Running   0          4h27m
+cert-manager                        cert-manager-webhook-549dc474bc-q2lhs                            1/1     Running   0          4h27m
+kube-system                         calico-kube-controllers-7986b8994b-hsxg4                         1/1     Running   0          4h27m
+kube-system                         calico-node-995bz                                                1/1     Running   0          4h26m
+kube-system                         calico-node-crhtv                                                1/1     Running   0          4h27m
+kube-system                         coredns-9d6cb6b59-ndlb7                                          1/1     Running   0          4h27m
+kube-system                         coredns-9d6cb6b59-s7p99                                          1/1     Running   0          4h27m
+kube-system                         etcd-tkg-management-control-plane-6nwpx                          1/1     Running   0          4h27m
+kube-system                         kube-apiserver-tkg-management-control-plane-6nwpx                1/1     Running   0          4h27m
+kube-system                         kube-controller-manager-tkg-management-control-plane-6nwpx       1/1     Running   0          4h27m
+kube-system                         kube-proxy-b4ms9                                                 1/1     Running   0          4h27m
+kube-system                         kube-proxy-v29vj                                                 1/1     Running   0          4h26m
+kube-system                         kube-scheduler-tkg-management-control-plane-6nwpx                1/1     Running   0          4h27m
+kube-system                         vsphere-cloud-controller-manager-gfd9t                           1/1     Running   0          4h27m
+kube-system                         vsphere-csi-controller-0                                         5/5     Running   0          4h27m
+kube-system                         vsphere-csi-node-lttgr                                           3/3     Running   0          4h26m
+kube-system                         vsphere-csi-node-nv74d                                           3/3     Running   0          4h26m
+</code></pre>
+<p>Looks good? - GREAT! This means it´s time to deploy our first workload Cluster :).</p>
+<p>The command below will create a development Cluster with 1 Master and 1 Worker node named &ldquo;tkg-workload-01&rdquo;.</p>
+<pre><code>tkg create cluster --plan=dev tkg-workload-01
+</code></pre>
+<p>Once the deployment is done the context will be switched to the workload cluster and you should be able to view all the pods running as well.</p>
+<p>You can use the following command to switch between existing kubeconfig contexts from now on to manage your clusters:</p>
+<pre><code>kubectl config get-contexts
+CURRENT   NAME                                    CLUSTER           AUTHINFO                
+*         tkg-management-admin@tkg-management     tkg-management    tkg-management-admin
+          tkg-workload-01-admin@tkg-workload-01   tkg-workload-01   tkg-workload-01-admin
+
+# to switch between cluster-contexts:
+kubectl config use-context tkg-workload-01-admin@tkg-workload-01
+Switched to context &quot;tkg-workload-01-admin@tkg-workload-01&quot;
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="persistent-storage-for-kubernetes">Persistent Storage for Kubernetes</h3>
+<p>A great feature which is provided out of the Box with TKGonVMC is, that we are able to leverage the Cloud-Native storage integration of VMConAWS to provide vSAN Storage to our K8s applications. All we need to do is to create a storage-Class in K8s which we can use and which points to the WorkloadDatastore with the correct policy.</p>
+<p>The Storage-Class below will create a storage class with the default vSAN-Policy pointing to the WorkloadDatastore. Make sure you replace the values according to your environment.</p>
+<pre><code>cat sc.yaml
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: standard
+  annotations:
+    storageclass.kubernetes.io/is-default-class: &quot;true&quot;
+provisioner: csi.vsphere.vmware.com
+allowVolumeExpansion: true
+parameters:
+    storagePolicyName: &quot;vSAN Default Storage Policy&quot;
+    datastoreurl: &quot;ds:///vmfs/volumes/vsan:b01e02424695410d-96775a9212a96fa1/&quot;
+</code></pre>
+<p>To apply this storage class to your K8s Cluster all you have to do is to run the following command:</p>
+<pre><code>kubectl apply -f sc.yaml
+storageclass.storage.k8s.io/standard created
+</code></pre>
+<p>Great - from now on we´re able to leverage the storage class &ldquo;standard&rdquo; in our K8s deployments. To check whether this is working you can create a simple persistent volume leveraging the following yaml-file:</p>
+<pre><code># apply the following configuration file &quot;pvc.yaml&quot;
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: myfirstpvc
+  namespace: default
+  labels: 
+        app: myfirstapp
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+
+$ kubectl apply -f pvc.yaml
+$ persistentvolumeclaim/myfirstpvc created
+
+# check if the pvc is successfully bound
+$ kubectl get pvc
+NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+myfirstpvc   Bound    pvc-949b6d58-4a6e-4496-bb0e-a203a741acb7   3Gi        RWO            standard       15s
+</code></pre>
+<p>When you apply this file and it show´s bound you will also recognise that the K8s volume is now visible in the vSphere UI when you navigate to &ldquo;WorkloadDatastore → Monitor →  Container Volumes&rdquo;.  Notice that the K8s label we set for our pvc is  directly visible in vSphere. This makes it very easy to identify the applications which are using this pvc later on.</p>
+<p><img src="../tkgonVMC/images/tkg-pvc.png" alt=""></p>
+<p>We successfully deployed Tanzu Kubernetes grid on VMware Cloud on AWS and can now create, delete or update Kubernetes Clusters leveraging the tight integration between vSphere and Kubernetes.</p>
+<p>The video I made is also handling the scaling of a TKG-Cluster and the deployment of a example chat application called rocketchat.</p>
+<h3 id="useful-links">Useful Links:</h3>
+<p>Download:</p>
+<ul>
+<li><a href="http://vmware.com/go/get-tkg">vmware.com/go/get-tkg</a></li>
+</ul>
+<p>Product Documentation:</p>
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html">https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html</a></li>
+</ul>
+<p>Release Notes:</p>
+<ul>
+<li><a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.0/rn/VMware-Tanzu-Kubernetes-Grid-10-Release-Notes.html">https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.0/rn/VMware-Tanzu-Kubernetes-Grid-10-Release-Notes.html</a></li>
+</ul>
+<p>Cluster-API:</p>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/cluster-api">https://github.com/kubernetes-sigs/cluster-api</a></li>
+</ul>
+<p>Youtube-Video:</p>
+<ul>
+<li><a href="https://youtu.be/roHaVR-yOw8">https://youtu.be/roHaVR-yOw8</a></li>
+</ul>
+<p>How to create a Horizon Linux Development Desktop:</p>
+<ul>
+<li><a href="https://rguske.github.io/post/a-linux-development-desktop-with-vmware-horizon-part-i-horizon/">https://rguske.github.io/post/a-linux-development-desktop-with-vmware-horizon-part-i-horizon/</a></li>
+</ul>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606165676"></script>
+    <script src="/js/jquery.sticky.js?1606165676"></script>
+    <script src="/js/featherlight.min.js?1606165676"></script>
+    <script src="/js/highlight.pack.js?1606165676"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606165676"></script>
+    <script src="/js/learn.js?1606165676"></script>
+    <script src="/js/hugo-learn.js?1606165676"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1606165676"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-146538348-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

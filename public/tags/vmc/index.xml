@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VMC on alexdess.cloud</title>
+    <link>https://alexdess.cloud/tags/vmc/</link>
+    <description>Recent content in VMC on alexdess.cloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://alexdess.cloud/tags/vmc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GOVC</title>
+      <link>https://alexdess.cloud/posts/govc/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/govc/</guid>
+      <description>Automate your VM Deployments In this Blogpost you will learn to leverage one of my favourite automation tools called &amp;ldquo;GoVC&amp;rdquo; to automate your virtual machine and OVF-Deployments for VMware Cloud on AWS and vSphere. The tool does a great job making in creating repeatable deployments of VMs and OVFs.
+If you are working with lab environments it´s key to have a repeatable and reliable way to deploy your VMs without having to enter a lot data over and over again.</description>
+    </item>
+    
+    <item>
+      <title>Prometheus - From Metrics to Insights</title>
+      <link>https://alexdess.cloud/posts/from-metrics-to-insights/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/from-metrics-to-insights/</guid>
+      <description>Leveraging the Prometheus Operator on VMC Prometheus was the second project which joined the Cloud Native Computing foundation after Kubernetes in 2016. Originally it was founded 2012 at Soundcloud but is now completely vendor independent and open source. A lot companies have already adopted Prometheus, and the project has a highly active community. Customers which are running VMware Tanzu Kubernetes Grid+ are provided with full Enterprise support included with their TKG+ subscription.</description>
+    </item>
+    
+    <item>
+      <title>TKG on VMC</title>
+      <link>https://alexdess.cloud/posts/tkgonvmc/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/tkgonvmc/</guid>
+      <description>Tanzu Kubernetes Grid is GA! In this blogpost I am going to show you how easy it is to setup, configure and lifecycle enterprise K8s Clusters and applications on VMware Cloud.
+We will deploy Tanzu Kubernetes Grid to VMConAWS as well as an application which uses Cloud Native vSAN Storage and existing services on VMConAWS to expose it to the outside world.
+Before we start i would like to introduce you to the basic concepts of Tanzu Kubernetes Grid.</description>
+    </item>
+    
+    <item>
+      <title>App modernization with VMC</title>
+      <link>https://alexdess.cloud/posts/app-modernization-with-vmc/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/app-modernization-with-vmc/</guid>
+      <description>In this blogpost we´re going to perform an exemplary application modernization. I wanted to provide an easy and understandable example how an existing application can be modernized in order to take advantages of modern application architecture by leveraging Kubernetes.
+Modernising parts of an existing application is what I observed in real world customer scenarios. Parts of an application are modernized to take the maximum value compared to the high effort of refactoring the whole application.</description>
+    </item>
+    
+    <item>
+      <title>K8s ClusterAPI</title>
+      <link>https://alexdess.cloud/posts/cluster-api/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/cluster-api/</guid>
+      <description>What is the CAPI Project about? ClusterAPI is a project focussing on the lifecycle management day0 to day2 in order to ease the management for K8s Clusters. The project explains itself with:
+ The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.
+ Get the environment ready In order to leverage all the functionality please make sure you´re using the latest version.</description>
+    </item>
+    
+  </channel>
+</rss>

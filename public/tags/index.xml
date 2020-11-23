@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on alexdess.cloud</title>
+    <link>https://alexdess.cloud/tags/</link>
+    <description>Recent content in Tags on alexdess.cloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://alexdess.cloud/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>K8s</title>
+      <link>https://alexdess.cloud/tags/k8s/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>monitoring</title>
+      <link>https://alexdess.cloud/tags/monitoring/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/monitoring/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VMC</title>
+      <link>https://alexdess.cloud/tags/vmc/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/vmc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Storage</title>
+      <link>https://alexdess.cloud/tags/storage/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/storage/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TKG</title>
+      <link>https://alexdess.cloud/tags/tkg/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/tkg/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>capv</title>
+      <link>https://alexdess.cloud/tags/capv/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/capv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cluster-api</title>
+      <link>https://alexdess.cloud/tags/cluster-api/</link>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/cluster-api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Automation</title>
+      <link>https://alexdess.cloud/tags/automation/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/automation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IaaS</title>
+      <link>https://alexdess.cloud/tags/iaas/</link>
+      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/tags/iaas/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

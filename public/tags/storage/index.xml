@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Storage on alexdess.cloud</title>
+    <link>https://alexdess.cloud/tags/storage/</link>
+    <description>Recent content in Storage on alexdess.cloud</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 15 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://alexdess.cloud/tags/storage/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TKG on VMC</title>
+      <link>https://alexdess.cloud/posts/tkgonvmc/</link>
+      <pubDate>Wed, 15 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/tkgonvmc/</guid>
+      <description>Tanzu Kubernetes Grid is GA! In this blogpost I am going to show you how easy it is to setup, configure and lifecycle enterprise K8s Clusters and applications on VMware Cloud.
+We will deploy Tanzu Kubernetes Grid to VMConAWS as well as an application which uses Cloud Native vSAN Storage and existing services on VMConAWS to expose it to the outside world.
+Before we start i would like to introduce you to the basic concepts of Tanzu Kubernetes Grid.</description>
+    </item>
+    
+    <item>
+      <title>K8s ClusterAPI</title>
+      <link>https://alexdess.cloud/posts/cluster-api/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://alexdess.cloud/posts/cluster-api/</guid>
+      <description>What is the CAPI Project about? ClusterAPI is a project focussing on the lifecycle management day0 to day2 in order to ease the management for K8s Clusters. The project explains itself with:
+ The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.
+ Get the environment ready In order to leverage all the functionality please make sure you´re using the latest version.</description>
+    </item>
+    
+  </channel>
+</rss>

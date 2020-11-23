@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="description" content="State of the art povisioning for K8s Clusters">
+<meta name="author" content="Alexander Dess">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>K8s ClusterAPI - alexdess.cloud</title>
+
+    
+    <link href="/css/nucleus.css?1606165676" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606165676" rel="stylesheet">
+    <link href="/css/hybrid.css?1606165676" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606165676" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606165676" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606165676" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606165676" rel="stylesheet">
+    <link href="/css/theme.css?1606165676" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/foo.css?1606165676" rel="stylesheet"><link href="/css/bar.css?1606165676" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js?1606165676"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/cluster-api/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://alexdess.cloud/">
+    <img src="/images/favicon.png">
+  </a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1606165676"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606165676"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/alexdess.cloud";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1606165676"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/govc/" title="GOVC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/govc/">
+          GOVC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/from-metrics-to-insights/" title="Prometheus - From Metrics to Insights" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/from-metrics-to-insights/">
+          Prometheus - From Metrics to Insights
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/tkgonvmc/" title="TKG on VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/tkgonvmc/">
+          TKG on VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/app-modernization-with-vmc/" title="App modernization with VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/app-modernization-with-vmc/">
+          App modernization with VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/cluster-api/" title="K8s ClusterAPI" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/posts/cluster-api/">
+          K8s ClusterAPI
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      Built with <i class="fas fa-heart"></i>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   K8s ClusterAPI
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#what-is-the-capi-project-about">What is the CAPI Project about?</a></li>
+        <li><a href="#get-the-environment-ready">Get the environment ready</a></li>
+        <li><a href="#csi-components">CSI Components:</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#first-step-is-to-get-the-vsphere-csi-driver">First step is to get the vsphere-csi-driver</a></li>
+    <li><a href="#enable-disk-uuid-for-all-your-nodes">Enable Disk UUID for all your Nodes</a></li>
+    <li><a href="#providing-the-vsphere-credentials-to-the-csi-plugin">Providing the vSphere Credentials to the CSI-Plugin</a>
+      <ul>
+        <li><a href="#create-the-rbac-roles">Create the RBAC roles</a></li>
+        <li><a href="#wohoo-were-now-ready-to-deploy-our-csi-vsphere">Wohoo! We´re now ready to deploy our csi-vsphere</a></li>
+        <li><a href="#next-we-need-to-create-a-storage-class">Next we need to create a Storage Class</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+<div class="tags">
+
+  <a class="tag-link" href="/tags/k8s">K8s</a>
+
+  <a class="tag-link" href="/tags/vmc">VMC</a>
+
+  <a class="tag-link" href="/tags/storage">Storage</a>
+
+</div>
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              K8s ClusterAPI
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="what-is-the-capi-project-about">What is the CAPI Project about?</h3>
+<p>ClusterAPI is a project focussing on the lifecycle management day0 to day2 in order to ease the management for K8s Clusters. The project explains itself with:</p>
+<blockquote>
+<p>The Cluster API is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management.</p>
+</blockquote>
+<h3 id="get-the-environment-ready">Get the environment ready</h3>
+<p>In order to leverage all the functionality please make sure you´re using the latest version.</p>
+<ul>
+<li>vSphere &gt; 6.7 U3 (Cloud Native-Storage was introduced in this Version)</li>
+<li>govc installed and configured - please see <a href="https://alexdess.cloud/posts/govc/">This Post</a></li>
+<li>kind (kubernetes in docker)</li>
+</ul>
+<h3 id="csi-components">CSI Components:</h3>
+<p>The drawing below is a logical drawing regarding the neccessary components and high-level interaction between those.</p>
+<p><img src="../Cluster-API/images/csi-drawing.png" alt=""></p>
+<p>In this tutorial we will leverage the csi-vsphere which enables the provisioning of those static values on demand. For the current K8s version the CSI-Plugin is the preferred way to be leveraged.</p>
+<h1 id="check-your-versions-and-tooling">Check your versions and tooling</h1>
+<ul>
+<li>vSphere &gt; 6.5</li>
+<li>K8s &gt; 1.14 (I´m using 1.15.2)</li>
+<li>govc installed and configured - please see <a href="https://alexdess.cloud/posts/govc/">This Post</a></li>
+</ul>
+<h2 id="first-step-is-to-get-the-vsphere-csi-driver">First step is to get the vsphere-csi-driver</h2>
+<p>We´re going to clone the vSphere CSI-Driver plugin to your nodes. You can clone this to all of them or distribute via scp</p>
+<pre><code>git clone https://github.com/kubernetes-sigs/vsphere-csi-driver.git
+</code></pre>
+<h2 id="enable-disk-uuid-for-all-your-nodes">Enable Disk UUID for all your Nodes</h2>
+<p>If you followed my previous post you have most likely already enabled this setting. If you haven´t please enable the disk.enableUUID=1</p>
+<pre><code>govc vm.change -vm k8s-master01 -e &quot;disk.enableUUID=1&quot;
+govc vm.change -vm k8s-worker01 -e &quot;disk.enableUUID=1&quot;
+govc vm.change -vm k8s-worker02 -e &quot;disk.enableUUID=1&quot;
+</code></pre>
+<h2 id="providing-the-vsphere-credentials-to-the-csi-plugin">Providing the vSphere Credentials to the CSI-Plugin</h2>
+<p>There are two options how to provide the csi-vsphere our vCenter Credentials.</p>
+<ul>
+<li>Using a K8s Secret</li>
+<li>Within the vSphere.conf</li>
+</ul>
+<p>In our case we will provide the secrets in the vsphere.conf since we´re working in our lab-environment. For a real environment we would for sure store the credentials in a K8s secret.</p>
+<p>My vsphere.conf:</p>
+<pre><code>[Global]
+user = &quot;cloudadmin@vmc.local&quot;
+password = &quot;Highlysecure-XXXX-&quot;
+port = &quot;443&quot;
+insecure-flag = &quot;1&quot;
+
+[VirtualCenter &quot;10.56.224.4&quot;]
+datacenters = &quot;SDDC-Datacenter&quot;
+
+[Workspace]
+server = &quot;10.56.224.4&quot;
+datacenter = &quot;SDDC-Datacenter&quot;
+default-datastore = &quot;WorkloadDatastore&quot;
+resourcepool-path = &quot;SDDC-Datacenter/host/Cluster-1/Resources/Compute-ResourcePool&quot;
+folder = &quot;adess&quot;
+</code></pre>
+<p>Create configmap:</p>
+<h3 id="create-the-rbac-roles">Create the RBAC roles</h3>
+<p>Next we need to create the neccessary rbac roles</p>
+<pre><code>ubuntu@k8s-master01:~/vsphere-csi-driver$ kubectl create -f manifests/1.14/rbac
+
+serviceaccount/vsphere-csi-attacher created
+clusterrole.rbac.authorization.k8s.io/external-attacher-runner created
+clusterrolebinding.rbac.authorization.k8s.io/csi-attacher-role created
+serviceaccount/vsphere-csi-provisioner created
+clusterrole.rbac.authorization.k8s.io/external-provisioner-runner created
+clusterrolebinding.rbac.authorization.k8s.io/csi-provisioner-role created
+serviceaccount/vsphere-csi-controller created
+clusterrole.rbac.authorization.k8s.io/vsphere-csi-controller-role created
+clusterrolebinding.rbac.authorization.k8s.io/vsphere-csi-controller-binding created
+</code></pre>
+<h3 id="wohoo-were-now-ready-to-deploy-our-csi-vsphere">Wohoo! We´re now ready to deploy our csi-vsphere</h3>
+<p>Deploy from the git-repo. It´s mandatory to have the cluster setup with kubeadm in order to properly work:</p>
+<pre><code>kubectl create -f manifests/1.14/deploy
+statefulset.apps/vsphere-csi-attacher created
+statefulset.apps/vsphere-csi-controller created
+[csidriver.storage.k8s.io/vsphere.csi.vmware.com](http://csidriver.storage.k8s.io/vsphere.csi.vmware.com) created
+daemonset.apps/vsphere-csi-node created
+statefulset.apps/vsphere-csi-provisioner created
+</code></pre>
+<h3 id="next-we-need-to-create-a-storage-class">Next we need to create a Storage Class</h3>
+<p>Adjust the values according to your deployment. For the deployment on VMC it is absolutely mandatory that we´re selecting the Workload-Datastore</p>
+<pre><code>ubuntu@k8s-master01:~/csi$ cat sc.yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+        name: vsan
+        namespace: kube-system
+        annotations:
+                storageclass.kubernetes.io/is-default-class: &quot;true&quot;
+provisioner: vsphere.csi.vmware.com
+parameters:
+        parent_type: &quot;Datastore&quot;
+        parent_name: &quot;DatastoreWorkloadDatastore&quot;
+
+# Apply to create our Storage-Class:
+kubectl apply -f sc.yaml
+</code></pre>
+<p>After creating a storage-class into the K8s-API we can now create a persistent Volume Claim</p>
+<pre><code>cat pvc.yaml:
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: adess-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: vsan
+</code></pre>
+<p>Lets check if our volume was created accordingly. If you get the status &ldquo;Bound&rdquo; it has been successfully created. At the same time you should see a vmdk created in vCenter.
+<img src="../Cluster-API/images/vsphere-csi.png" alt=""></p>
+<pre><code>ubuntu@k8s-master01:~/csi$ kubectl get pvc
+NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+adess-pvc2g      Bound    pvc-75199f1d-1e9a-4290-bf77-eb7475ba327a   2Gi        RWO            vsan           5s
+</code></pre>
+<p>That´s it - stay tuned. In the next post we will leverage this to deploy a stateful Kubernetes application!</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606165676"></script>
+    <script src="/js/jquery.sticky.js?1606165676"></script>
+    <script src="/js/featherlight.min.js?1606165676"></script>
+    <script src="/js/highlight.pack.js?1606165676"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606165676"></script>
+    <script src="/js/learn.js?1606165676"></script>
+    <script src="/js/hugo-learn.js?1606165676"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1606165676"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-146538348-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

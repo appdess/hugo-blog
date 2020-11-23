@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="description" content="A application modernisation example leveraging VMware Cloud and K8s">
+<meta name="author" content="Alexander Dess">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>App modernization with VMC - alexdess.cloud</title>
+
+    
+    <link href="/css/nucleus.css?1606165676" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606165676" rel="stylesheet">
+    <link href="/css/hybrid.css?1606165676" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606165676" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606165676" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606165676" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606165676" rel="stylesheet">
+    <link href="/css/theme.css?1606165676" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/foo.css?1606165676" rel="stylesheet"><link href="/css/bar.css?1606165676" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js?1606165676"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/app-modernization-with-vmc/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://alexdess.cloud/">
+    <img src="/images/favicon.png">
+  </a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1606165676"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606165676"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/alexdess.cloud";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1606165676"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/govc/" title="GOVC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/govc/">
+          GOVC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/from-metrics-to-insights/" title="Prometheus - From Metrics to Insights" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/from-metrics-to-insights/">
+          Prometheus - From Metrics to Insights
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/tkgonvmc/" title="TKG on VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/tkgonvmc/">
+          TKG on VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/app-modernization-with-vmc/" title="App modernization with VMC" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/posts/app-modernization-with-vmc/">
+          App modernization with VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/cluster-api/" title="K8s ClusterAPI" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/cluster-api/">
+          K8s ClusterAPI
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      Built with <i class="fas fa-heart"></i>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   App modernization with VMC
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#base-case">Base Case</a></li>
+        <li><a href="#workload-migration">Workload Migration</a></li>
+        <li><a href="#how-does-the-current-application-look-like">How does the current application look-like?</a></li>
+        <li><a href="#tackling-the-application-problems">Tackling the application problems</a></li>
+      </ul>
+    </li>
+    <li><a href="#prerequisites-running-kubernetes-on-vmware-cloud-on-aws">Prerequisites: Running Kubernetes on VMware Cloud on AWS</a></li>
+    <li><a href="#prepare-the-frontend">Prepare the Frontend</a></li>
+    <li><a href="#additional-components">Additional Components</a></li>
+    <li><a href="#application-deployment">Application deployment</a></li>
+    <li><a href="#migrate-the-users">Migrate the Users</a></li>
+    <li><a href="#leverage-the-new-application-architecture">Leverage the new Application architecture</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+<div class="tags">
+
+  <a class="tag-link" href="/tags/k8s">K8s</a>
+
+  <a class="tag-link" href="/tags/vmc">VMC</a>
+
+  <a class="tag-link" href="/tags/cluster-api">cluster-api</a>
+
+  <a class="tag-link" href="/tags/capv">capv</a>
+
+</div>
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              App modernization with VMC
+            </h1>
+          
+
+        
+
+
+
+	<p>In this blogpost we´re going to perform an exemplary application modernization. I wanted to provide an easy and understandable example how an existing application can be modernized in order to take advantages of modern application architecture by leveraging Kubernetes.</p>
+<p>Modernising parts of an existing application is what I observed in real world customer scenarios. Parts of an application are modernized to take the maximum value compared to the high effort of refactoring the whole application. There are a variety of reasons why a modernization makes sense. Common examples would be to enable the use of features like auto-scaling and monitoring or the decomposition of single modules because they became too big and complex for a single team to fully understand and maintain.</p>
+<p>I recommend to read the blogpost first and then watch the video.</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/LnDKAzDwGYY" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h3 id="base-case">Base Case</h3>
+<p>Our company in this showcase is called &ldquo;Commute Analytics&rdquo; and is providing a service to identify which is the best time in order to start your journey when commuting. <!-- raw HTML omitted -->
+The company chose to move all their workloads to the cloud since their contracts for the Datacenter are expiring and they chose not to invest in a new datacenter location.
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h3 id="workload-migration">Workload Migration</h3>
+<p>The first thing our Company needs to achieve is the evacuation of their current Datacenter. After a successful pilot Commute Analytics chose to leverage VMware Cloud on AWS with VMware HCX to migrate all their workloads to the cloud. Our example starts after the workloads have been migrated from on premises to VMware Cloud on AWS with HCX. If you don´t know what HCX is i highly recommend <a href="https://blogs.vmware.com/vsphere/2019/10/cloud-migration-series-part-1.html">to read this article.</a>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h3 id="how-does-the-current-application-look-like">How does the current application look-like?</h3>
+<p>Our application is accessible for users at &ldquo;<a href="http://commuteanalytics.corp.local">http://commuteanalytics.corp.local</a>&rdquo;. Every user can enter the source and destination address of their journey and will get recommendations when it´s best to start driving.</p>
+<p><img src="../App-Modernization-with-VMC/images/hugo-user.png" alt="">
+<img src="../App-Modernization-with-VMC/images/hugo-user1.png" alt=""></p>
+<!-- raw HTML omitted -->
+<h3 id="tackling-the-application-problems">Tackling the application problems</h3>
+<p>After the successful migration to VMware Cloud on AWS the company is still facing problems with their application and users are complaining about performance during peak times.
+<!-- raw HTML omitted --></p>
+<p>The current application architecture looks like the following:
+<img src="/images/old-application.png" alt="">
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<p><strong>A analysis of the application has shown that:</strong></p>
+<ul>
+<li>The current application architecture limits throughput and does not scale to the amount of users</li>
+<li>Upgrades are difficult to achieve and always require a downtime</li>
+<li>The bottleneck of the application is the frontend which is not capable of handling the amount of users during peak times</li>
+</ul>
+<p>Since our bottleneck is the frontend of the application we´re going to modernize this part of the application while leaving the Databse as a VM.</p>
+<!-- raw HTML omitted -->
+<h2 id="prerequisites-running-kubernetes-on-vmware-cloud-on-aws">Prerequisites: Running Kubernetes on VMware Cloud on AWS</h2>
+<p>We choose to modernize the frontend and migrate this part of the application to K8s. Therefore we are leveraging Tanzu Kubernetes Grid (former Essentials PKS) - VMware´s upstream Kubernetes distribution which helps to provide a common Kubernetes distribution across all your environments. I will write a seperate blogpost about how to deploy TKG on VMC leveraging Cluster-API and the options you´re having for Load Balancing and Ingress controllers in the near future.</p>
+<p>The picture below shows TKG on VMConAWS with one workload-cluster roled out as well as the current application VMs &ldquo;tito-db&rdquo; and &ldquo;tito-fe&rdquo;.
+<img src="../App-Modernization-with-VMC/images/k8s-cluster.png" alt="">
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h2 id="prepare-the-frontend">Prepare the Frontend</h2>
+<p>In order to enable a smooth migration we´re leveraging the existing Apache configuration of the frontend VM &ldquo;tito-fe&rdquo; and creating a container which will act as our new frontend.</p>
+<p>The next thing is to build our container image for the new frontend.<!-- raw HTML omitted -->
+Let´s have a look at our Dockerfile - you see that we´re copying the apache config in line 5 to the container image.
+<img src="../App-Modernization-with-VMC/images/dockerfile.png" alt=""></p>
+<p>As a next step we build our container image and upload it to the registry of choice. For this Demo I chose to simply use Docker hub. If you wanna try this at home you will find prebuild containers <a href="https://hub.docker.com/repository/docker/adess/vmc-demo-k8s">on my docker Docker registry </a>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h2 id="additional-components">Additional Components</h2>
+<p>In order to make our application scalable we need some additional components. Most important we´re switching from the single VM to a load balanced approach leveraging K8s. To create the Load Balancer in K8s we will apply the following file to our K8s Cluster. The actual Load Balancer is then automatically implemented by the AVI networks solution which is deployed on the cluster. In terms of reliability we´re also setting a fixed IP for our Load Balancer in Line 27.
+<img src="../App-Modernization-with-VMC/images/app-lb.png" alt=""></p>
+<pre><code>    kubectl apply -f tito-lb.yaml
+</code></pre>
+<!-- raw HTML omitted -->
+<h2 id="application-deployment">Application deployment</h2>
+<p>Right now our old 2-Tier application is still running and serving users. At the same time we´re going to deploy our new K8s based frontend which will use the existing database in the backend. This procedure is completly transparent for the users which are using the service since they are still served by the old frontend VM.</p>
+<p>Let´s deploy our K8s based frontend and point it to the IP of our existing MySQL VM:
+<img src="../App-Modernization-with-VMC/images/app-deploy.png" alt=""></p>
+<pre><code>    kubectl apply -f tito-deployment.yaml
+</code></pre>
+<!-- raw HTML omitted -->
+<h2 id="migrate-the-users">Migrate the Users</h2>
+<p>Right now our application is accessible by the old DNS entry for our users but also via the new Load Balancer IP. This is possible because the frontend is completly stateless. A huge benefit is that we access the application via the IP and are able to verify and test the funcionality of the application.</p>
+<p>Access via K8s LB-IP:
+<img src="../App-Modernization-with-VMC/images/app-ip.png" alt="">
+<!-- raw HTML omitted --></p>
+<p>After we confirmed the correct functionality of our application we can simply migrate our users by changing our DNS record from the VM to our new K8s LB IP and our clients will be moved uninterrupted to the new K8s based frontend.
+<img src="../App-Modernization-with-VMC/images/dns.png" alt=""></p>
+<h2 id="leverage-the-new-application-architecture">Leverage the new Application architecture</h2>
+<p>Our modernized application does now look like the following:
+<img src="../App-Modernization-with-VMC/images/new-application.png" alt="">
+Let´s remember why we wanted to modernize the application in the first place. There have been scalability problems and users complained about bad performance during peak times.
+To tackle this we can now use K8s build in functionality like the horizontal pod autoscaler or simply scale our deployment up manually because we´re expecting higher load during peak times.</p>
+<p>As we can see below the deployment was scaled up from the inital two to 10 replicas (containers) and we can immediately see the CPU load dropping in Grafana.
+<img src="../App-Modernization-with-VMC/images/deploy-scale.png" alt="">
+<img src="../App-Modernization-with-VMC/images/grafana-scale.png" alt=""></p>
+<p>I hope you enjoyed reading this blogpost. Stay tuned - in the next blogposts i would like to show you how you can improve visibility for your K8s applications via Prometheus and Grafana and how to attach your existing clusters to Tanzu Mission Control.</p>
+<!-- raw HTML omitted -->
+<p>#VMwarePKSonVMC
+#TKG
+#VMware</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606165676"></script>
+    <script src="/js/jquery.sticky.js?1606165676"></script>
+    <script src="/js/featherlight.min.js?1606165676"></script>
+    <script src="/js/highlight.pack.js?1606165676"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606165676"></script>
+    <script src="/js/learn.js?1606165676"></script>
+    <script src="/js/hugo-learn.js?1606165676"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1606165676"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-146538348-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

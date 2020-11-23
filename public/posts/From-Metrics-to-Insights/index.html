@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="description" content="Prometheus Monitoring with TKG&#43; on VMC">
+<meta name="author" content="Alexander Dess">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>Prometheus - From Metrics to Insights - alexdess.cloud</title>
+
+    
+    <link href="/css/nucleus.css?1606165676" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606165676" rel="stylesheet">
+    <link href="/css/hybrid.css?1606165676" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606165676" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606165676" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606165676" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606165676" rel="stylesheet">
+    <link href="/css/theme.css?1606165676" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/foo.css?1606165676" rel="stylesheet"><link href="/css/bar.css?1606165676" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js?1606165676"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/from-metrics-to-insights/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://alexdess.cloud/">
+    <img src="/images/favicon.png">
+  </a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1606165676"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606165676"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/alexdess.cloud";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1606165676"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/govc/" title="GOVC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/govc/">
+          GOVC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/from-metrics-to-insights/" title="Prometheus - From Metrics to Insights" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/posts/from-metrics-to-insights/">
+          Prometheus - From Metrics to Insights
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/tkgonvmc/" title="TKG on VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/tkgonvmc/">
+          TKG on VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/app-modernization-with-vmc/" title="App modernization with VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/app-modernization-with-vmc/">
+          App modernization with VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/cluster-api/" title="K8s ClusterAPI" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/cluster-api/">
+          K8s ClusterAPI
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      Built with <i class="fas fa-heart"></i>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   Prometheus - From Metrics to Insights
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#leveraging-the-prometheus-operator-on-vmc">Leveraging the Prometheus Operator on VMC</a>
+      <ul>
+        <li><a href="#prometheus-architecture">Prometheus Architecture</a></li>
+        <li><a href="#deploy-the-operator">Deploy the Operator</a></li>
+        <li><a href="#cloud-native-storage-for-our-metrics">Cloud Native Storage for our metrics</a></li>
+        <li><a href="#deploy-the-prometheus-operator">Deploy the Prometheus Operator</a></li>
+        <li><a href="#configure-access-to-grafana">Configure Access to Grafana</a></li>
+      </ul>
+    </li>
+    <li><a href="#verify-persistent-storage-for-prometheus">Verify Persistent Storage for Prometheus</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+<div class="tags">
+
+  <a class="tag-link" href="/tags/k8s">K8s</a>
+
+  <a class="tag-link" href="/tags/vmc">VMC</a>
+
+  <a class="tag-link" href="/tags/monitoring">monitoring</a>
+
+</div>
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              Prometheus - From Metrics to Insights
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="leveraging-the-prometheus-operator-on-vmc">Leveraging the Prometheus Operator on VMC</h2>
+<p>Prometheus was the second project which joined the Cloud Native Computing foundation after Kubernetes in 2016. Originally it was founded 2012 at Soundcloud but is now completely vendor independent and open source. A lot companies have already adopted Prometheus, and the project has a highly active community.  Customers which are running VMware Tanzu Kubernetes Grid+ are provided with full Enterprise support included with their <a href="https://kb.vmware.com/s/article/78173">TKG+ subscription.</a></p>
+<p>While Prometheus is free it doesn&rsquo;t´t mean that it´s easy and straightforward to understand and to deploy. This is why I made this blogpost to get your Prometheus instance on VMware-Cloud and any  K8s environment up and running in - let´s say less than 4 Minutes ;).</p>
+<p>To start with this tutorial you will need:</p>
+<ul>
+<li><a href="https://helm.sh/">Helm installed on your machine</a></li>
+<li><a href="https://alexdess.cloud/posts/tkgonvmc/">TKG+ or another K8s Cluster using the CSI Storage driver on vSphere or VMware-Cloud</a></li>
+<li>A cup of coffee and 4-6 Minutes time 🙂
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></li>
+</ul>
+<h3 id="prometheus-architecture">Prometheus Architecture</h3>
+<p>In this blogpost we will deploy prometheus and visualise our K8s cluster metrics like the CPU utilisation or the utilisation of our Persistent Volumes with Grafana.</p>
+<p>Let´s have a quick look at the prometheus architecture below. I simplified the diagram to the components which we will focus on later in the tutorial:</p>
+<ul>
+<li>The Prometheus Server which stores our time-series data</li>
+<li>Grafana to visualise your collected metrics</li>
+<li>The Altermanager component to get you out of bed if necessary ;)</li>
+</ul>
+<p><strong>The picture below shows the Architecture of Prometheus:</strong>
+<img src="../From-Metrics-to-Insights/images/prometheus-architecture.png" alt="">
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h3 id="deploy-the-operator">Deploy the Operator</h3>
+<p>We are going to leverage the <a href="https://github.com/prometheus-operator/prometheus-operator">Prometheus operator</a> deployed via a helm chart. It  packages up all the components of Prometheus which are necessary for our logging stack.</p>
+<p>If you don´t know what Helm is I recommend you to check out <a href="https://helm.sh/">this Link</a>. If you want to learn more about the Operator-Pattern in K8s i recommend to check out <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">this</a> link.
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h3 id="cloud-native-storage-for-our-metrics">Cloud Native Storage for our metrics</h3>
+<p>We want to persist our metrics and will make use of the Cloud-Native Storage Integration of vSphere. Notice that you need at least vCenter version 6.7U3 which provides the required API.</p>
+<p>First we want to make sure that we have a Storage Class created accordingly in K8s pointing to a Datastore in vSphere.</p>
+<p>If you have a usable default Storage Class already you can skip this step. You may want to check if you have a Storage-Class already available by running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get sc
+NAME                PROVISIONER                 
+default <span style="color:#f92672">(</span>default<span style="color:#f92672">)</span>   csi.vsphere.vmware.com
+</code></pre></div><p>If you have a working default Storage class for your environment you can skip the creation. Otherwise you can create the storage class accordingly or use the &ldquo;sc.yaml&rdquo; file from my repo and adjust it to fit to your environment.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Download the Storage Class example file:</span>
+<span style="color:#ae81ff">$ wget https://raw.githubusercontent.com/appdess/prometheus-operator-vsphere/master/sc.yaml</span>
+</code></pre></div><p>Make sure you replace the value for &ldquo;<strong>datastoreurl</strong>&rdquo; according to your environment. <!-- raw HTML omitted -->
+You can get this value from the vSphere or VMC-UI in the &ldquo;Storage&rdquo; Tab.</p>
+<p><img src="../From-Metrics-to-Insights/images/prometheus-dsurl.png" alt=""></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># adjust the &#34;datastoreurl&#34; according to your environment BEFORE you apply the storage-class!</span>
+<span style="color:#f92672">kind</span>: <span style="color:#ae81ff">StorageClass</span>
+<span style="color:#f92672">apiVersion</span>: [<span style="color:#ae81ff">storage.k8s.io/v1](http://storage.k8s.io/v1)</span>
+<span style="color:#f92672">metadata</span>:
+<span style="color:#f92672">name</span>: <span style="color:#ae81ff">default</span> <span style="color:#75715e"># this is the storage class name we will create in K8s</span>
+<span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">default</span>
+<span style="color:#f92672">labels</span>:
+<span style="color:#f92672">annotations</span>:
+[<span style="color:#ae81ff">storageclass.kubernetes.io/is-default-class:](http://storageclass.kubernetes.io/is-default-class:) &#34;true&#34;</span>
+<span style="color:#f92672">provisioner</span>: [<span style="color:#ae81ff">csi.vsphere.vmware.com](http://csi.vsphere.vmware.com/)</span>
+<span style="color:#f92672">allowVolumeExpansion</span>: <span style="color:#66d9ef">true</span>
+<span style="color:#f92672">parameters</span>:
+<span style="color:#f92672">storagePolicyName</span>: <span style="color:#e6db74">&#34;vSAN Default Storage Policy&#34;</span> <span style="color:#75715e"># our vSAN Storage policy from vCenter</span>
+<span style="color:#75715e">**datastoreurl**:</span> <span style="color:#75715e">**&#34;ds:///vmfs/volumes/vsan:e4fdeb26bf93402f-956989e5b4bf358e/**&#34;</span> <span style="color:#75715e"># the Datasture-URL of our WorkloadDatastore</span>
+
+
+<span style="color:#75715e"># Apply the Storage Class in your Environment**</span>
+<span style="color:#ae81ff">$ kubectl apply -f sc.yaml</span>
+
+<span style="color:#75715e"># this should output</span>
+<span style="color:#ae81ff">$ storageclass.storage.k8s.io/default created</span>
+</code></pre></div><p>Ok  - we´ve successfully created a Storage Class which points to our vSAN Datastore and leverages the &ldquo;vSAN Default Storage Policy&rdquo; - we´re good to deploy Prometheus.</p>
+<h3 id="deploy-the-prometheus-operator">Deploy the Prometheus Operator</h3>
+<p>We need to adjust the default deployment to fit to our environment. The great thing leveraging helm is that we can specify a central file called &ldquo;values.yaml&rdquo; which will override the given standard values. This is how you customise deployments with helm to fit to your infrastructure and requirements.</p>
+<p>You can customise the deployment leveraging a yaml file. My file below is called &ldquo;values.yaml&rdquo; and specifies the standard PW for Grafana, the vSphere Storage Class we created before and a setting for the serviceMonitor discovery of Prometheus.</p>
+<p>If you are using the Storage Class &ldquo;default&rdquo; in your environment you can simply use my updated file and start the deployment via Helm.</p>
+<p>Below is my customisation i applied to the <a href="https://raw.githubusercontent.com/helm/charts/master/stable/prometheus-operator/values.yaml">original file</a> - you can customise further or <strong>skip this step and continue with the helm deployment by leveraging my template file below.</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># OPTIONAL BOX - you may want to use my prepared file below instead of customisig your own</span>
+
+<span style="color:#75715e"># get the latest values.yaml file and edit it accordingly or take my example:</span>
+<span style="color:#ae81ff">wget https://raw.githubusercontent.com/helm/charts/master/stable/prometheus-operator/values.yaml</span>
+
+<span style="color:#75715e"># change the admin PW for Grafana</span>
+<span style="color:#f92672">adminPassword</span>: <span style="color:#ae81ff">VMware1!</span>
+
+<span style="color:#75715e"># Change the Storage Spec to use our &#34;default&#34; Storage Class </span>
+<span style="color:#f92672">storageSpec</span>: 
+      <span style="color:#f92672">volumeClaimTemplate</span>:
+        <span style="color:#f92672">spec</span>:
+          <span style="color:#f92672">storageClassName</span>: <span style="color:#ae81ff">default</span>
+          <span style="color:#f92672">accessModes</span>: [<span style="color:#e6db74">&#34;ReadWriteOnce&#34;</span>]
+          <span style="color:#f92672">resources</span>:
+            <span style="color:#f92672">requests</span>:
+              <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">50Gi</span>
+
+<span style="color:#75715e"># set the value for service-discovery to discover sevice-montors (crds) created in the namespace</span>
+<span style="color:#f92672">serviceMonitorSelectorNilUsesHelmValues</span>: <span style="color:#66d9ef">false</span>
+</code></pre></div><p><strong>Deploy the Prometheus operator to our K8s Cluster</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># get the values exmaple file which contains the changes from above:</span>
+<span style="color:#ae81ff">$ wget https://raw.githubusercontent.com/appdess/prometheus-operator-vsphere/master/values.yaml</span>
+
+<span style="color:#75715e"># install the Prometheus operator via helm customized by our file:</span>
+<span style="color:#ae81ff">$ helm install prometheus stable/prometheus-operator -f values.yaml</span>
+
+<span style="color:#75715e"># this should output the following:</span>
+<span style="color:#f92672">The Prometheus Operator has been installed. Check its status by running</span>:
+</code></pre></div><p><strong>Verify the status of the components:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl --namespace default get pods -l <span style="color:#e6db74">&#34;release=prometheus&#34;</span>
+NAME                                                   READY   STATUS    RESTARTS   AGE
+prometheus-prometheus-node-exporter-dhcfm              1/1     Running   <span style="color:#ae81ff">0</span>          93s
+prometheus-prometheus-node-exporter-gcn6q              1/1     Running   <span style="color:#ae81ff">0</span>          93s
+prometheus-prometheus-node-exporter-p2gs4              1/1     Running   <span style="color:#ae81ff">0</span>          93s
+prometheus-prometheus-node-exporter-x7ff9              1/1     Running   <span style="color:#ae81ff">0</span>          93s
+prometheus-prometheus-oper-operator-769d757547-vh9kc   2/2     Running   <span style="color:#ae81ff">0</span>          93s
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="configure-access-to-grafana">Configure Access to Grafana</h3>
+<p>Let´s also check the services which have been created by our deployment. We are especially interested in the Grafana service since we want to access the Dashboard to view our collected metrics.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl get svc
+NAME                                      TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span style="color:#f92672">(</span>S<span style="color:#f92672">)</span>                      AGE
+prometheus-grafana                        ClusterIP   100.64.44.227    &lt;none&gt;        80/TCP                       14m
+prometheus-kube-state-metrics             ClusterIP   100.69.121.82    &lt;none&gt;        8080/TCP                     14m
+prometheus-operated                       ClusterIP   None             &lt;none&gt;        9090/TCP                     14m
+</code></pre></div><p>You can either change the internal Cluster-IP of &ldquo;prometheus-grafana&rdquo; to an external loadbalancer IP or simply make the user interface available leveraging a kubectl port-forwarding to your local machine.</p>
+<p><strong>How to setup port forwarding to your local machine:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">$ kubectl port-forward deployment/prometheus-grafana 8080:3000</span>
+
+<span style="color:#ae81ff">Forwarding from 127.0.0.1:8080 -&gt; 3000</span>
+<span style="color:#ae81ff">Forwarding from [::1]:8080 -&gt; 3000</span>
+</code></pre></div><p>You can now access Grafana by opening a browser to http://127.0.0.1:8080</p>
+<p><strong>How to configure a load balancer for Grafana:</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#ae81ff">$ kubectl patch svc prometheus-grafana -p &#39;{&#34;spec&#34;: {&#34;type&#34;: &#34;LoadBalancer&#34;}}&#39;</span>
+
+<span style="color:#75715e"># check your IP to access Grafana:</span>
+<span style="color:#ae81ff">$ kubectl get svc prometheus-grafana</span>
+<span style="color:#ae81ff">NAME                 TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)        </span>
+<span style="color:#ae81ff">prometheus-grafana   LoadBalancer   100.66.133.185   **172.30.124.23**   80:31365/TCP</span>
+</code></pre></div><p>You can now access Grafana by opening a browser and point it to http://<strong>172.30.124.23 (Your external IP from above)</strong></p>
+<p>Depending which method you choose you access the dashboard either via:</p>
+<ul>
+<li>Port-Forwarding:  http://127.0.0.1:8080</li>
+<li>LoadBalancer:      <a href="http://172.30.124.23">http://**172.30.124.23</a>** (The IP for your service from above)</li>
+<li>User: admin | PW: VMware1!</li>
+</ul>
+<p>Next we want to add our first dashboard to view our Cluster Resources. You can do this by navigating to &ldquo;Dashboard&rdquo; and &ldquo;Manage&rdquo;.</p>
+<p><img src="../From-Metrics-to-Insights/images/prometheus-manage.png" alt=""></p>
+<p>Now you can select an example Dashboard. I´ve chosen to select the &ldquo;Cluster Dashboard&rdquo; to get an holistic view about all my K8s Cluster Resources.</p>
+<p>You will notice there are a lot default templates already available which you can customise due to your needs. You can also drill down on the resources to investigate for example what namespaces and pods are consuming the most memory.</p>
+<p><img src="../From-Metrics-to-Insights/images/prometheus-dashboard.png" alt=""></p>
+<p>While the above graph shows the memory consumption per namespace, the graph below shows the memory consumption per POD in a given namespace.</p>
+<p><img src="../From-Metrics-to-Insights/images/prometheus-memory.png" alt="">
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted --></p>
+<h2 id="verify-persistent-storage-for-prometheus">Verify Persistent Storage for Prometheus</h2>
+<p>Containers are stateless per default but our data should not be lost when the containers for our deployment are updated or restarted.  Let´s do a quick check if our Persistent Volume was successfully created and the data is written to it accordingly.</p>
+<p>We are able to do this and view the Persistent Volumes as well as their current storage consumption in the Grafana UI. The dashboard is in the templates folder and simply called &ldquo;Persistent Volumes&rdquo;:</p>
+<p><strong>Viewing our Persistent Volume Claim including the usage created with our Storage Class:</strong></p>
+<p><img src="../From-Metrics-to-Insights/images/prometheus-pvc.png" alt=""></p>
+<!-- raw HTML omitted -->
+<p>My &ldquo;prometheus-ingress.yaml&rdquo; below:</p>
+<pre><code>apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus
+  namespace: default
+spec:
+  rules:
+  - host: alertmanager.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-prometheus-oper-alertmanager
+          servicePort: 9093
+  - host: grafana.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-grafana
+          servicePort: 80
+  - host: prometheus.set.local
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-prometheus-oper-prometheus
+          servicePort: 9090
+</code></pre>
+<p>That´s it for the first post - we successfully setup Prometheus with Persistent Storage and Grafana to visualise our data. Thank you for reading and stay tuned for the next topics like alerting, setting up ingress and how to get your application metrics into Prometheus.</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606165676"></script>
+    <script src="/js/jquery.sticky.js?1606165676"></script>
+    <script src="/js/featherlight.min.js?1606165676"></script>
+    <script src="/js/highlight.pack.js?1606165676"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606165676"></script>
+    <script src="/js/learn.js?1606165676"></script>
+    <script src="/js/hugo-learn.js?1606165676"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1606165676"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-146538348-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>

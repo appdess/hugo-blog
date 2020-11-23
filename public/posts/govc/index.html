@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="description" content="Speed up your Cloud Deployments - with repeatable automation">
+<meta name="author" content="Alexander Dess">
+
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
+
+    <title>GOVC - alexdess.cloud</title>
+
+    
+    <link href="/css/nucleus.css?1606165676" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1606165676" rel="stylesheet">
+    <link href="/css/hybrid.css?1606165676" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1606165676" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1606165676" rel="stylesheet">
+    <link href="/css/auto-complete.css?1606165676" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1606165676" rel="stylesheet">
+    <link href="/css/theme.css?1606165676" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/theme-blue.css?1606165676" rel="stylesheet">
+    
+    <link href="/css/foo.css?1606165676" rel="stylesheet"><link href="/css/bar.css?1606165676" rel="stylesheet">
+
+    <script src="/js/jquery-3.3.1.min.js?1606165676"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/posts/govc/">
+    <nav id="sidebar" class="">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="https://alexdess.cloud/">
+    <img src="/images/favicon.png">
+  </a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1606165676"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1606165676"></script>
+<script type="text/javascript">
+    
+        var baseurl = "https:\/\/alexdess.cloud";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1606165676"></script>
+
+    
+  </div>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/" title="Posts" class="dd-item
+        parent
+        
+        
+        ">
+      <a href="/posts/">
+          Posts
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/govc/" title="GOVC" class="dd-item
+        parent
+        active
+        
+        ">
+      <a href="/posts/govc/">
+          GOVC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/from-metrics-to-insights/" title="Prometheus - From Metrics to Insights" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/from-metrics-to-insights/">
+          Prometheus - From Metrics to Insights
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/tkgonvmc/" title="TKG on VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/tkgonvmc/">
+          TKG on VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/app-modernization-with-vmc/" title="App modernization with VMC" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/app-modernization-with-vmc/">
+          App modernization with VMC
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/posts/cluster-api/" title="K8s ClusterAPI" class="dd-item
+        
+        
+        
+        ">
+      <a href="/posts/cluster-api/">
+          K8s ClusterAPI
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+
+    
+    <section id="footer">
+      Built with <i class="fas fa-heart"></i>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                   GOVC
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#automate-your-vm-deployments">Automate your VM Deployments</a>
+      <ul>
+        <li><a href="#first-things-first---install-govc">First things first - Install GoVC</a></li>
+        <li><a href="#allow-communication">Allow communication</a></li>
+        <li><a href="#configure-your-vcenter-connection">Configure your vCenter Connection</a></li>
+        <li><a href="#create-a-template-and-start-automating">Create a template and start automating!</a></li>
+        <li><a href="#using-govc-for-vsphere-cloning">Using GoVC for vSphere Cloning</a></li>
+        <li><a href="#useful-links">Useful Links.</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+<div class="tags">
+
+  <a class="tag-link" href="/tags/iaas">IaaS</a>
+
+  <a class="tag-link" href="/tags/automation">Automation</a>
+
+  <a class="tag-link" href="/tags/vmc">VMC</a>
+
+</div>
+
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              GOVC
+            </h1>
+          
+
+        
+
+
+
+	<h2 id="automate-your-vm-deployments">Automate your VM Deployments</h2>
+<p><img src="../govc/images/govc.png?classes=shadow&amp;width=50pc" alt=""></p>
+<p>In this Blogpost you will learn to leverage one of my favourite automation tools called &ldquo;GoVC&rdquo; to automate your virtual machine and OVF-Deployments for VMware Cloud on AWS and vSphere. The tool does a great job making in creating repeatable deployments of VMs and OVFs.</p>
+<p>If you are working with lab environments it´s key to have a repeatable and reliable way to deploy your VMs without having to enter a lot data over and over again. I guess there´s not a single admin out there who hasn´t klicked thourgh a OVA-Deployment wizard multiple times because some minor setting was wrong causing the deployment to fail ;).  From this day on you will want to use GoVC and never face this problem again.</p>
+<p>In my example below, we´re using GoVC to preapre a ubuntu-Image for vSphere and clone it a few times. My machine I am operating from is a ubuntu running inside my VMware Cloud on AWS SDDC. You can use any OS as long as you have connectivity to your vCenter.
+<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="first-things-first---install-govc">First things first - Install GoVC</h3>
+<p>Let´s start by downloading GoVC for our operating system. The easiest way is to go to the github page and pick the appropirate download for your OS.</p>
+<p>Go to Github and determine the Version neccessary for your OS.
+<a href="https://github.com/vmware/govmomi/releases">https://github.com/vmware/govmomi/releases</a></p>
+<p>Download the Version for your OS, make it executable and move it into your path:</p>
+<pre><code>    curl -L https://github.com/vmware/govmomi/releases/download/prerelease-v0.21.0-58-g8d28646/govc_linux_amd64.gz| gunzip &gt; /usr/local/bin/govc
+    # make govc executable
+    chmod +x /usr/local/bin/govc
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="allow-communication">Allow communication</h3>
+<p>In order to do deployments from our Jumphost where we just installed with GoVC, we need to setup some firewall rules.  GoVC will first talk to the vCenter but the actual deployment happens via a direct communication to the ESXi host so we have to open the firewall for these ports. In my example below I am showing how to achieve this in the VMC-Console of our SDDC.</p>
+<ul>
+<li>In the VMC console navigate to:
+<ul>
+<li>Network and Security</li>
+<li>Gateway Firewall</li>
+<li>Management Gateway</li>
+</ul>
+</li>
+</ul>
+<p>and setup the following rules to allow the incomming traffic from our Jumphost:</p>
+<p>To the vCenter Server:
+<img src="../govc/images/vmc-fw-govc1.png" alt=""></p>
+<p>To the ESXi-Hosts:
+<img src="../govc/images/vmc-fw-govc.png" alt=""></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="configure-your-vcenter-connection">Configure your vCenter Connection</h3>
+<p>A huge benefit of GoVC is that you can work with environment variables. This enables you to easily switch between multiple environments. <!-- raw HTML omitted -->
+We will create a configuration file which contains the connection details for your vCenter in order to leverage it for the deployment.</p>
+<p>Create a text file with your favourite editor which contains the following data:</p>
+<pre><code>cat vmc-govcvars.sh
+#!/bin/bash
+export GOVC_INSECURE=1 # In order to NOT verify SSL certs on vCenter
+export GOVC_URL=https://vcenter.sddc-XXXXXXXXX.vmwarevmc.com/sdk # Your SDDC / vCenter IP or FQDN
+export GOVC_USERNAME=cloudadmin@vmc.local # vCenter username
+export GOVC_PASSWORD=HIGHLYSECURE123 # vCenter password
+export GOVC_DATASTORE=WorkloadDatastore # Default datastore to deploy to - Neccessary for deployments to VMC!
+export GOVC_NETWORK=EMEA-VMC-TEST-04-DHCP # Default network to deploy to
+export GOVC_RESOURCE_POOL=/SDDC-Datacenter/host/Cluster-1/Resources/Compute-ResourcePool # Default resource pool to deploy t
+export GOVC_FOLDER=adess # Default folder for our deployments
+</code></pre>
+<!-- raw HTML omitted -->
+<pre><code>source vmc-govcvars.sh
+</code></pre>
+<p>As a last thing we want to check if govc was successfully installed:</p>
+<pre><code>vmware@adess-jh:~/deploy$ govc about
+Name:         VMware vCenter Server
+Vendor:       VMware, Inc.
+Version:      6.8.7
+Build:        13619665
+OS type:      linux-x64
+API type:     VirtualCenter
+API version:  6.7.2
+Product ID:   vpx
+UUID:         56d58607-fd5c-4206-84cb-acb4ed88276f
+</code></pre>
+<p>If this command shows you information about your vCenter you have successfully installed and configured GoVC. <!-- raw HTML omitted -->
+{&hellip;woohooo!!!}</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="create-a-template-and-start-automating">Create a template and start automating!</h3>
+<p>Now that we verified the successfull setup of GoVC, we can create our vSphere template. <!-- raw HTML omitted -->
+We will use a ubuntu server image which is slim, functional and can be leveraged to create a vSphere template. You can use any appliance or OVA-Template here :)!</p>
+<p>The next steps will download our OVA Image to the Jumphost and prepare it for deployment:</p>
+<pre><code># download the ova image:
+wget https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova
+
+# Extract the ova-specs from the image to a &quot;ubuntu1.json&quot; file
+govc import.spec ubuntu-18.04-server-cloudimg-amd64.ova | jq . &gt; ubuntu1.json
+
+Now we can edit the specification and specify a network or a SSH-Key. 
+Note that for ubuntu you HAVE to specify your public key in order to logon after deployment.
+
+vmware@adess-jh:~/deploy$ cat ubuntu.json
+{
+&quot;DiskProvisioning&quot;: &quot;thin&quot;,
+&quot;IPAllocationPolicy&quot;: &quot;dhcpPolicy&quot;,
+&quot;IPProtocol&quot;: &quot;IPv4&quot;,
+&quot;PropertyMapping&quot;: [
+    {
+    &quot;Key&quot;: &quot;instance-id&quot;,
+    &quot;Value&quot;: &quot;id-ovf&quot;
+    },
+    {
+    &quot;Key&quot;: &quot;hostname&quot;,
+    &quot;Value&quot;: &quot;ubuntu1804&quot;
+    },
+    {
+    &quot;Key&quot;: &quot;seedfrom&quot;,
+    &quot;Value&quot;: &quot;&quot;
+    },
+    {
+    &quot;Key&quot;: &quot;public-keys&quot;,
+    &quot;Value&quot;: &quot;ssh-rsa AAAAB3NzaC1ycXXXX/ZXgTKs7LhVNc+Od5SPl98PkviU3lUsgkt5tavyyR5Qbxqs+r6zbZKfXXXXXD/Q4djNPEEnZJ6Qw4SJIQn/Ygpps6CsvGrccYAC7XXXXXXXXXXXblBs5qXBhr+It/73 vmware@adess-jh&quot;
+    },
+    {
+    &quot;Key&quot;: &quot;user-data&quot;,
+    &quot;Value&quot;: &quot;&quot;
+    },
+    {
+    &quot;Key&quot;: &quot;password&quot;,
+    &quot;Value&quot;: &quot;VMware1!&quot;
+    }
+],
+&quot;NetworkMapping&quot;: [
+    {
+    &quot;Name&quot;: &quot;VM Network&quot;,
+    &quot;Network&quot;: &quot;EMEA-VMC-TEST-04-DHCP&quot;
+    }
+],
+&quot;MarkAsTemplate&quot;: false,
+&quot;PowerOn&quot;: true,
+&quot;InjectOvfEnv&quot;: false,
+&quot;WaitForIP&quot;: false,
+&quot;Name&quot;: &quot;ubuntu1804-template&quot;
+}
+</code></pre>
+<!-- raw HTML omitted -->
+<p>After we did the specification we can now we can deploy the machine to vSphere:</p>
+<pre><code>govc import.ova -options=ubuntu.json ubuntu-18.04-server-cloudimg-amd64.ova
+</code></pre>
+<p>The cool thing is once you created a config-file for a OVA like we did above you can deploy n-number of machines from it without having to specify all parameters over and over again.</p>
+<h3 id="using-govc-for-vsphere-cloning">Using GoVC for vSphere Cloning</h3>
+<p>As we seen above, govc is great to automate the deployment of OVA-Images but you can leverage it to basically automate any vShere Operation. Below i want to show you a few very helpful operations:
+<!-- raw HTML omitted --></p>
+<h4 id="clone-multiple-vms-from-a-template">Clone multiple VMs from a Template</h4>
+<p>We will use govc to clone 4 VMs from our newly created template with our guest-customization &ldquo;Ubuntu&rdquo;.</p>
+<pre><code>govc vm.clone -vm ubuntu1804-template -customization=Ubuntu k8s-master01
+govc vm.clone -vm ubuntu1804-template -customization=Ubuntu k8s-worker01
+govc vm.clone -vm ubuntu1804-template -customization=Ubuntu k8s-worker02
+govc vm.clone -vm ubuntu1804-template -customization=Ubuntu k8s-worker03
+</code></pre>
+<h4 id="power-vms-on-and-of">Power VMs on and of:</h4>
+<pre><code>govc vm.power -on=true k8s-master01
+</code></pre>
+<!-- raw HTML omitted -->
+<h4 id="search-a-vm-by-ip">Search a VM by IP</h4>
+<pre><code>govc find . -type m -guest.ipAddress &quot;172.30.118.34&quot; -runtime.powerState poweredOn
+/SDDC-Datacenter/vm/Workloads/adess/k8s-master01
+</code></pre>
+<!-- raw HTML omitted -->
+<h4 id="get-detailed-information-about-a-vm">Get detailed information about a VM:</h4>
+<pre><code>govc vm.info k8s-master01
+Name:           k8s-master01
+Path:         /SDDC-Datacenter/vm/Workloads/adess/k8s-master01
+UUID:         422597fd-d975-99d0-49af-6a3074d53415
+Guest name:   Ubuntu Linux (64-bit)
+Memory:       4096MB
+CPU:          4 vCPU(s)
+Power state:  poweredOn
+Boot time:    &lt;nil&gt;
+IP address:   172.30.118.34
+Host:         10.56.32.4
+</code></pre>
+<!-- raw HTML omitted -->
+<h4 id="upload-a-file-to-a-datastore">Upload a file to a Datastore:</h4>
+<p>The command below will upload our ubuntu-ova image to the Workloaddatastore in the directory /isos</p>
+<pre><code>govc datastore.upload ubuntu-18.04-server-cloudimg-amd64.ova /isos/ubuntu.ova
+</code></pre>
+<!-- raw HTML omitted -->
+<h4 id="info-for-resourcepool">Info for ResourcePool</h4>
+<pre><code>govc pool.info Compute-ResourcePool
+Name:              Compute-ResourcePool
+Path:             /SDDC-Datacenter/host/Cluster-1/Resources/Compute-ResourcePool
+CPU Usage:        12618MHz (5.6%)
+CPU Shares:       normal
+CPU Reservation:  0MHz (expandable=true)
+CPU Limit:        -1MHz
+Mem Usage:        368534MB (26.2%)
+Mem Shares:       normal
+Mem Reservation:  0MB (expandable=true)
+Mem Limit:        -1MB
+</code></pre>
+<p>I hope this post will help you to automate your daily tasks in your SDDC .</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="useful-links">Useful Links.</h3>
+<p><a href="https://github.com/vmware/govmomi">https://github.com/vmware/govmomi</a></p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.min.js?1606165676"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1606165676"></script>
+    <script src="/js/jquery.sticky.js?1606165676"></script>
+    <script src="/js/featherlight.min.js?1606165676"></script>
+    <script src="/js/highlight.pack.js?1606165676"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1606165676"></script>
+    <script src="/js/learn.js?1606165676"></script>
+    <script src="/js/hugo-learn.js?1606165676"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1606165676"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-146538348-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
+</html>
